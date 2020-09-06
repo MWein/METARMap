@@ -6,8 +6,6 @@ import (
 	"github.com/MWein/METARMap/metar"
 )
 
-const WindSpeedMode = 2
-
 var Red = []int{1, 0, 0}
 var Green = []int{0, 1, 0}
 var Blue = []int{0, 0, 1}
@@ -39,6 +37,8 @@ var SkyConditionMap = map[string][]int{
 	"BKN": Red,
 	"OVC": White,
 }
+
+const WindSpeedMode = 2
 
 func EncodeMetars(metars []metar.Metar, mode int) {
 	var shiftRegisterBits []int
