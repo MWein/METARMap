@@ -1,9 +1,14 @@
 package main
 
 import (
+	//"fmt"
+
 	"github.com/MWein/METARMap/metar"
+	"github.com/MWein/METARMap/encoding"
 )
 
 func main() {
-	metar.GetMetars()
+	var metars = metar.GetMetars()
+
+	encoding.EncodeMetars(metars, 2)
 }
