@@ -2,6 +2,7 @@ package metar
 
 import (
 	"encoding/xml"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -95,6 +96,8 @@ func GetMetars() []Metar {
 
 		metars = append(metars, metar)
 	}
+
+	fmt.Println(len(metars))
 
 	return metars
 }
