@@ -81,17 +81,16 @@ func GetMetars() []Metar {
 
 		// Create METAR object
 		metar.StationID = metarXML.StationID
+		metar.FlightCategory = metarXML.FlightCat
+		metar.SkyCondition = metarXML.SkyCondition.SkyCondition
+		metar.WindSpeed = metarXML.WindSpeed
 
-		// If there is no station ID (meaning, no METAR) then put "None" for everything
-		if metar.StationID != "" {
-			metar.FlightCategory = metarXML.FlightCat
-			metar.SkyCondition = metarXML.SkyCondition.SkyCondition
-			metar.WindSpeed = metarXML.WindSpeed
-		} else {
-			metar.StationID = airport
+		// Data could be missing
+		if metar.FlightCategory == "" {
 			metar.FlightCategory = "None"
+		}
+		if metar.SkyCondition == "" {
 			metar.SkyCondition = "None"
-			metar.WindSpeed = 0
 		}
 
 		metars = append(metars, metar)

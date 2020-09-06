@@ -36,6 +36,7 @@ var skyConditionMap = map[string][]int{
 	"SCT": yellow,
 	"BKN": red,
 	"OVC": white,
+	"None": off,
 }
 
 func EncodeMetars(metars []metar.Metar, mode int) {
@@ -57,9 +58,11 @@ func EncodeMetars(metars []metar.Metar, mode int) {
 				shiftRegisterBits = append(shiftRegisterBits, yellow...)
 			} else if windSpeed > 15 {
 				shiftRegisterBits = append(shiftRegisterBits, red...)
+			} else {
+				shiftRegisterBits = append(shiftRegisterBits, off...)
 			}
 		}
 	}
 
-	fmt.Println(shiftRegisterBits)
+	fmt.Println(len(shiftRegisterBits))
 }
