@@ -6,39 +6,37 @@ import (
 	"github.com/MWein/METARMap/metar"
 )
 
-var Red = []int{1, 0, 0}
-var Green = []int{0, 1, 0}
-var Blue = []int{0, 0, 1}
-
-var Yellow = []int{1, 1, 0}
-var Magenta = []int{1, 0, 1}
-var Cyan = []int{0, 1, 1}
-
-var White = []int{1, 1, 1}
-var Off = []int{0, 0, 0}
-
 const FlightCatMode = 0
-
-var FlightCatMap = map[string][]int{
-	"VFR":  Green,
-	"MVFR": Blue,
-	"IFR":  Red,
-	"LIFR": Magenta,
-	"None": Off,
-}
-
 const SkyConditionMode = 1
+const WindSpeedMode = 2
 
-var SkyConditionMap = map[string][]int{
-	"SKC": Off,
-	"CLR": Off,
-	"FEW": Blue,
-	"SCT": Yellow,
-	"BKN": Red,
-	"OVC": White,
+var red = []int{1, 0, 0}
+var green = []int{0, 1, 0}
+var blue = []int{0, 0, 1}
+
+var yellow = []int{1, 1, 0}
+var magenta = []int{1, 0, 1}
+var cyan = []int{0, 1, 1}
+
+var white = []int{1, 1, 1}
+var off = []int{0, 0, 0}
+
+var flightCatMap = map[string][]int{
+	"VFR":  green,
+	"MVFR": blue,
+	"IFR":  red,
+	"LIFR": magenta,
+	"None": off,
 }
 
-const WindSpeedMode = 2
+var skyConditionMap = map[string][]int{
+	"SKC": off,
+	"CLR": off,
+	"FEW": blue,
+	"SCT": yellow,
+	"BKN": red,
+	"OVC": white,
+}
 
 func EncodeMetars(metars []metar.Metar, mode int) {
 	var shiftRegisterBits []int
@@ -47,18 +45,18 @@ func EncodeMetars(metars []metar.Metar, mode int) {
 		metar := metars[x]
 
 		if mode == FlightCatMode {
-			shiftRegisterBits = append(shiftRegisterBits, FlightCatMap[metar.FlightCategory]...)
+			shiftRegisterBits = append(shiftRegisterBits, flightCatMap[metar.FlightCategory]...)
 		} else if mode == SkyConditionMode {
-			shiftRegisterBits = append(shiftRegisterBits, SkyConditionMap[metar.SkyCondition]...)
+			shiftRegisterBits = append(shiftRegisterBits, skyConditionMap[metar.SkyCondition]...)
 		} else if mode == WindSpeedMode {
 			windSpeed := metar.WindSpeed
 
 			if windSpeed <= 5 {
-				shiftRegisterBits = append(shiftRegisterBits, Green...)
+				shiftRegisterBits = append(shiftRegisterBits, green...)
 			} else if windSpeed <= 15 {
-				shiftRegisterBits = append(shiftRegisterBits, Yellow...)
+				shiftRegisterBits = append(shiftRegisterBits, yellow...)
 			} else if windSpeed > 15 {
-				shiftRegisterBits = append(shiftRegisterBits, Red...)
+				shiftRegisterBits = append(shiftRegisterBits, red...)
 			}
 		}
 	}
