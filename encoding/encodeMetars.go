@@ -30,19 +30,18 @@ var flightCatMap = map[string][]bool{
 }
 
 var skyConditionMap = map[string][]bool{
-	"SKC": off,
-	"CLR": off,
-	"FEW": blue,
-	"SCT": yellow,
-	"BKN": red,
-	"OVC": white,
+	"SKC":  off,
+	"CLR":  off,
+	"FEW":  blue,
+	"SCT":  yellow,
+	"BKN":  red,
+	"OVC":  white,
 	"None": off,
 }
 
-
 // This function is used if you're an idiot like me and bought multicolor LEDs where the anode and cathode is reversed
 // IE, red should be 100... but the damn LED lights red for 011 because I bought the wrong kind
-func inverseEncodedMetars(oldBits []bool) []bool {
+func InverseEncodedMetars(oldBits []bool) []bool {
 	var newBits []bool
 	for x := 0; x < len(oldBits); x++ {
 		newBits = append(newBits, !oldBits[x])
@@ -50,8 +49,7 @@ func inverseEncodedMetars(oldBits []bool) []bool {
 	return newBits
 }
 
-
-func EncodeMetars(metars []metar.Metar, mode int) {
+func EncodeMetars(metars []metar.Metar, mode int) []bool {
 	var shiftRegisterBits []bool
 
 	for x := 0; x < len(metars); x++ {
@@ -78,4 +76,6 @@ func EncodeMetars(metars []metar.Metar, mode int) {
 
 	fmt.Println(shiftRegisterBits)
 	fmt.Println(inverseEncodedMetars(shiftRegisterBits))
+
+	return shiftRegisterBits
 }

@@ -9,6 +9,8 @@ import (
 
 func main() {
 	var metars = metar.GetMetars()
+	var encodedMetar = encoding.EncodeMetars(metars, 0)
+	var reversedMetar = encoding.InverseEncodedMetars(encodedMetar)
 
-	encoding.EncodeMetars(metars, 2)
+	encoding.WriteToGPIO(reversedMetar)
 }

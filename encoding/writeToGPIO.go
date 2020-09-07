@@ -8,7 +8,7 @@ const DATALINE = 23
 const OCLK = 18
 const ICLK = 15
 
-func writeToGPIO(bits []bool) {
+func WriteToGPIO(bits []bool) {
 	// Open GPIO access
 	err := rpio.Open()
 	if err != nil {
