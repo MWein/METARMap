@@ -10,5 +10,5 @@ import (
 func main() {
 	var metars = metar.GetMetars()
 
-	encoding.EncodeMetars(metars, 0)
+	encoding.EncodeMetars(metars, 2)
 }
