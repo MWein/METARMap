@@ -10,18 +10,18 @@ const FlightCatMode = 0
 const SkyConditionMode = 1
 const WindSpeedMode = 2
 
-var red = []int{1, 0, 0}
-var green = []int{0, 1, 0}
-var blue = []int{0, 0, 1}
+var red = []bool{true, false, false}
+var green = []bool{false, true, false}
+var blue = []bool{false, false, true}
 
-var yellow = []int{1, 1, 0}
-var magenta = []int{1, 0, 1}
-var cyan = []int{0, 1, 1}
+var yellow = []bool{true, true, false}
+var magenta = []bool{true, false, true}
+var cyan = []bool{false, true, true}
 
-var white = []int{1, 1, 1}
-var off = []int{0, 0, 0}
+var white = []bool{true, true, true}
+var off = []bool{false, false, false}
 
-var flightCatMap = map[string][]int{
+var flightCatMap = map[string][]bool{
 	"VFR":  green,
 	"MVFR": blue,
 	"IFR":  red,
@@ -29,7 +29,7 @@ var flightCatMap = map[string][]int{
 	"None": off,
 }
 
-var skyConditionMap = map[string][]int{
+var skyConditionMap = map[string][]bool{
 	"SKC": off,
 	"CLR": off,
 	"FEW": blue,
@@ -40,7 +40,7 @@ var skyConditionMap = map[string][]int{
 }
 
 func EncodeMetars(metars []metar.Metar, mode int) {
-	var shiftRegisterBits []int
+	var shiftRegisterBits []bool
 
 	for x := 0; x < len(metars); x++ {
 		metar := metars[x]
@@ -64,5 +64,5 @@ func EncodeMetars(metars []metar.Metar, mode int) {
 		}
 	}
 
-	fmt.Println(len(shiftRegisterBits))
+	fmt.Println(shiftRegisterBits)
 }
