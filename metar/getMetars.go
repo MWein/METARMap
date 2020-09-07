@@ -50,7 +50,7 @@ func GetTestMetars() []Metar {
 	metars[0].FlightCategory = "VFR"
 	metars[1].FlightCategory = "MVFR"
 	metars[2].FlightCategory = "IFR"
-	metars[3].FlightCategory = "OFF"
+	metars[3].FlightCategory = "None"
 	metars[4].FlightCategory = "LIFR"
 
 	return metars
