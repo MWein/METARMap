@@ -42,6 +42,11 @@ type Metar struct {
 func GetTestMetars() []Metar {
 	var metars []Metar
 
+	for x := 0; x < 5; x++ {
+		var metar Metar
+		metars = append(metars, metar)
+	}
+
 	metars[0].FlightCategory = "VFR"
 	metars[1].FlightCategory = "MVFR"
 	metars[2].FlightCategory = "IFR"
