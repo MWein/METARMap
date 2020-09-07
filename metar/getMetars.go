@@ -39,6 +39,18 @@ type Metar struct {
 	WindSpeed      int
 }
 
+func GetTestMetars() []Metar {
+	var metars []Metar
+
+	metars[0].FlightCategory = "VFR"
+	metars[1].FlightCategory = "MVFR"
+	metars[2].FlightCategory = "IFR"
+	metars[3].FlightCategory = "OFF"
+	metars[4].FlightCategory = "LIFR"
+
+	return metars
+}
+
 func GetMetars() []Metar {
 	// Build to URL from the Airports list
 	urlEncodedAirports := strings.Join(Airports, "%20")
