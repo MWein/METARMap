@@ -39,6 +39,18 @@ var skyConditionMap = map[string][]bool{
 	"None": off,
 }
 
+
+// This function is used if you're an idiot like me and bought multicolor LEDs where the anode and cathode is reversed
+// IE, red should be 100... but the damn LED lights red for 011 because I bought the wrong kind
+func inverseEncodedMetars(oldBits []bool) []bool {
+	var newBits []bool
+	for x := 0; x < len(oldBits); x++ {
+		newBits = append(newBits, !oldBits[x])
+	}
+	return newBits
+}
+
+
 func EncodeMetars(metars []metar.Metar, mode int) {
 	var shiftRegisterBits []bool
 
@@ -65,4 +77,5 @@ func EncodeMetars(metars []metar.Metar, mode int) {
 	}
 
 	fmt.Println(shiftRegisterBits)
+	fmt.Println(inverseEncodedMetars(shiftRegisterBits))
 }
