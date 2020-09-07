@@ -75,7 +75,7 @@ func EncodeMetars(metars []metar.Metar, mode int) []bool {
 	}
 
 	fmt.Println(shiftRegisterBits)
-	fmt.Println(inverseEncodedMetars(shiftRegisterBits))
+	fmt.Println(InverseEncodedMetars(shiftRegisterBits))
 
 	return shiftRegisterBits
 }
