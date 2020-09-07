@@ -17,6 +17,7 @@ type MetarXML struct {
 	XMLName      xml.Name        `xml:"METAR"`
 	StationID    string          `xml:"station_id"`
 	WindSpeed    int             `xml:"wind_speed_kt"`
+	WindGust     int             `xml:"wind_gust_kt"`
 	FlightCat    string          `xml:"flight_category"`
 	SkyCondition SkyConditionXML `xml:"sky_condition"`
 }
@@ -84,7 +85,13 @@ func GetMetars() []Metar {
 		metar.StationID = metarXML.StationID
 		metar.FlightCategory = metarXML.FlightCat
 		metar.SkyCondition = metarXML.SkyCondition.SkyCondition
-		metar.WindSpeed = metarXML.WindSpeed
+
+		// Take the greater of WindGust or WindSpeed
+		if metarXML.WindGust > metarXML.WindSpeed {
+			metar.WindSpeed = metarXML.WindGust
+		} else {
+			metar.WindSpeed = metarXML.WindSpeed
+		}
 
 		// Data could be missing
 		if metar.FlightCategory == "" {
@@ -98,6 +105,7 @@ func GetMetars() []Metar {
 	}
 
 	fmt.Println(len(metars))
+	fmt.Println(metars)
 
 	return metars
 }
