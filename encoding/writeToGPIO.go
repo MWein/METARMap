@@ -38,5 +38,7 @@ func WriteToGPIO(bits []bool) {
 
 	// Tell the shift registers to display
 	oClkPin.High()
-	oClkPin.Low()
+
+	// TODO Remove comment out when I replace the bad register
+	//oClkPin.Low()
 }
