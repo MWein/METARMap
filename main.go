@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	var metars = metar.GetTestMetars()
+	var metars = metar.GetMetars()
 	var encodedMetar = encoding.EncodeMetars(metars, 0)
 	var reversedMetar = encoding.InverseEncodedMetars(encodedMetar)
 
