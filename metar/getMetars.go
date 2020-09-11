@@ -59,7 +59,7 @@ func GetTestMetars() []Metar {
 func GetMetars() []Metar {
 	// Build to URL from the Airports list
 	urlEncodedAirports := strings.Join(Airports, "%20")
-	url := "https://www.aviationweather.gov/adds/dataserver_current/httpparam?datasource=metars&requestType=retrieve&format=xml&mostRecentForEachStation=constraint&hoursBeforeNow=1&stationString=" + urlEncodedAirports
+	url := "https://www.aviationweather.gov/adds/dataserver_current/httpparam?datasource=metars&requestType=retrieve&format=xml&mostRecentForEachStation=constraint&hoursBeforeNow=5&stationString=" + urlEncodedAirports
 
 	// Request
 	resp, err := http.Get(url)
