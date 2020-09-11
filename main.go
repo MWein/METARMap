@@ -6,10 +6,14 @@ import (
 	"time"
 
 	"github.com/MWein/METARMap/encoding"
+	"github.com/MWein/METARMap/ledtest"
 	"github.com/MWein/METARMap/metar"
 )
 
 func main() {
+	ledtest.RunTests()
+
+	return
 	for {
 		var metars = metar.GetMetars()
 
