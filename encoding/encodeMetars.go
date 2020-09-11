@@ -49,6 +49,8 @@ func InverseEncodedMetars(oldBits []bool) []bool {
 	return newBits
 }
 
+// TODO Change to reference the actual airports list
+// Metar objects should be in a map with airport code as the key, metar as the value
 func EncodeMetars(metars []metar.Metar, mode int) []bool {
 	var shiftRegisterBits []bool
 
