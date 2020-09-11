@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
+	"time"
 )
 
 type SkyConditionXML struct {
@@ -61,21 +62,29 @@ func GetMetars() []Metar {
 	urlEncodedAirports := strings.Join(Airports, "%20")
 	url := "https://www.aviationweather.gov/adds/dataserver_current/httpparam?datasource=metars&requestType=retrieve&format=xml&mostRecentForEachStation=constraint&hoursBeforeNow=5&stationString=" + urlEncodedAirports
 
+	client := http.Client{
+		Timeout: 20 * time.Second,
+	}
+
 	// Request
-	resp, err := http.Get(url)
+	resp, err := client.Get(url)
 	if err != nil {
-		// TODO Handle
+		fmt.Println(err)
+		var emptyMetars []Metar
+		return emptyMetars
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		// TODO Handle
+		var emptyMetars []Metar
+		return emptyMetars
 	}
 
 	// Read the XML
 	data, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		// TODO Handle
+		var emptyMetars []Metar
+		return emptyMetars
 	}
 
 	// Unmarshal the XML
