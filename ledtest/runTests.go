@@ -66,5 +66,9 @@ func RunTests() {
 	colorTest(true, false, true)
 	time.Sleep(1 * time.Second)
 
+	fmt.Printf("\r\033[K" + "Off")
+	colorTest(false, false, false)
+	time.Sleep(1 * time.Second)
+
 	fmt.Printf("\r\033[K" + "Done" + "\033[?25h")
 }

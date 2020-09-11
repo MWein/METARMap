@@ -13,7 +13,6 @@ import (
 func main() {
 	ledtest.RunTests()
 
-	return
 	for {
 		var metars = metar.GetMetars()
 
