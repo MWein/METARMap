@@ -51,6 +51,8 @@ func InverseEncodedMetars(oldBits []bool) []bool {
 
 // TODO Change to reference the actual airports list
 // Metar objects should be in a map with airport code as the key, metar as the value
+
+// TODO Maybe get rid of sky condition mode. Unless I can find a way to control brightness so it can all show as white
 func EncodeMetars(metars []metar.Metar, mode int) []bool {
 	var shiftRegisterBits []bool
 
